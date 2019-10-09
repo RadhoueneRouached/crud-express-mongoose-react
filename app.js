@@ -5,9 +5,10 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost/mern-crud', { useMongoClient: true, promiseLibrary: require('bluebird') })
-  .then(() =>  console.log('connection succesful'))
-  .catch((err) => console.error(err));
+const CONNECTION_URL = "mongodb://raduser:luckyluke@stcluster-shard-00-00-n6o7f.mongodb.net:27017,stcluster-shard-00-01-n6o7f.mongodb.net:27017,stcluster-shard-00-02-n6o7f.mongodb.net:27017/test?ssl=true&replicaSet=stCluster-shard-0&authSource=admin&retryWrites=true&w=majority";
+mongoose.connect(CONNECTION_URL, { useMongoClient: true})
+    .then(() =>  console.log('connection succesful'))
+    .catch((err) => console.error(err));
 
 var patient = require('./routes/patient');
 var app = express();
